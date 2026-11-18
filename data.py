@@ -7,38 +7,6 @@ import math
 from collections import Counter
 
 
-## Methods for extracting and formatting the names.
-def process_line(line: str) -> str:
-  if line == "":
-    return ""
-
-  line = line.replace('\n', '')
-  line = "#" + line + '$' 
-
-  return line
-
-def file_contents(filename: str, permissions: str):
-  with open(filename, permissions) as file: 
-    names = [process_line(line) for line in file]
-
-  return names 
-
-## Methods for processing the data and calculating probability distributions.
-def distributions(names: list[str]):
-
-  char_freq = Counter()
-  for name in names: 
-    left, right = 0, 1 
-
-    while right < (len(name)):
-      curr_line = name[left:right + 1]
-      if curr_line not in char_freq:
-        char_freq[curr_line] = 0
-      char_freq[curr_line] += 1
-
-      left += 1; right += 1
-
-
 def main():
   with open("names.txt", "r") as file:
     char_freq = {}
